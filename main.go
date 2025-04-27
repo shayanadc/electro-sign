@@ -1,6 +1,9 @@
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 type Grid struct {
 	pixels [6][36]bool
@@ -28,4 +31,24 @@ func (g *Grid) TunrOnPixels(input string) {
 		// Move right pointer one step forward to start looking for next letter
 		right++
 	}
+}
+
+func (g *Grid) Display() {
+	fmt.Println("Displaying the grid:")
+	for i := 0; i < 6; i++ {
+		for j := 0; j < 36; j++ {
+			if g.pixels[i][j] {
+				print("*")
+			} else {
+				print(" ")
+			}
+		}
+		println() // new line after each row
+	}
+}
+
+func main() {
+	sign := &Grid{}
+	sign.TunrOnPixels("B1B4B7B8B9B10B13B19B25B26B27B28C1C4C7C13C19C25C28D1D2D3D4D7D8D9D13D19D25D28E1E4E7E13E19E25E28F1F4F7F8F9F10F13F14F15F16F19F20F21F22F25F26F27F28") // This should now correctly set [0][2], [1][5], [2][7], [3][9]
+	sign.Display()
 }
